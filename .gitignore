@@ -13,3 +13,4 @@ media
 *.py[cod]
 *$py.class
 .env
+.idea
