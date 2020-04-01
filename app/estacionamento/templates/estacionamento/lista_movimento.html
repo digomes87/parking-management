@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<ul>
+    {% for lista_mov in lista_movimento %}
+        <li>{{ lista_mov.checkin }} - {{ lista_mov.veiculo.placa}}</li>
+    {% endfor %}
+</ul>
+</body>
+</html>
