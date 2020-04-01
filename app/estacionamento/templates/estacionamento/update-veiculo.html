@@ -5,6 +5,7 @@
 <form action="{% url 'update-veiculo' veiculo.id %}" method="post">
     {% csrf_token %}
     {{form.as_p}}
-    <button type="submit">Salvar</button>
+    <button class="btn btn-primary" type="submit">Salvar</button>
+    <button class="btn btn-danger" type="submit">Deletar</button>
 </form>
 {% endblock %}

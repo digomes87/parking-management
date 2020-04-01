@@ -1,9 +1,16 @@
 {% extends 'base.html' %}
-<h2>Dados do Usuario: {{pessoa}}</h2>
+{% load bootstrap %}
+{% block main %}
+<div class="row">
+    <div class="col">
+        <h2>Dados do Usuario: {{pessoa}}</h2>
 
-<form action="{% url 'update-pessoa' pessoa.id %}" method="post">
-    {% csrf_token %}
-    {{form.as_p}}
-    <button type="submit">Salvar</button>
-</form>
+        <form action="{% url 'update-pessoa' pessoa.id %}" method="post">
+            {% csrf_token %}
+            {{form|bootstrap}}
+            <button class="btn btn-primary" type="submit">Salvar</button>
+            <a href="{% url 'delete-pessoa' %}" class="btn btn-danger">Deletar</a>
+        </form>
+    </div>
+</div>
 {% endblock %}
