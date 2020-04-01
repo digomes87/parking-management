@@ -1,3 +1,5 @@
+{% extends 'base.html' %}
+{% block main %}
 <h2>Dados do Usuario: {{veiculo}}</h2>
 
 <form action="{% url 'update-veiculo' veiculo.id %}" method="post">
@@ -5,3 +7,4 @@
     {{form.as_p}}
     <button type="submit">Salvar</button>
 </form>
+{% endblock %}

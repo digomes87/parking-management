@@ -1,21 +1,28 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-    listando pessoas
-    <ul>
-        {% for pessoa in pessoas %}
-            <li>{{pessoa.nome }}</li>
-        {% endfor%}
-    </ul>
+{% extends 'base.html' %}
+{% load bootstrap %}
+{% block main %}
+<div class="row">
+    <div class="col-12">
+        <h1>Listando pessoas</h1>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-6">
 
     <form action="{% url 'pessoa_novo' %}" method="POST">
         {% csrf_token%}
-        {{ form.as_p }}
-        <button type="submit">Salvar</button>
+        {{ form|bootstrap }}
+        <button class="btn btn-primary" type="submit">Salvar</button>
     </form>
-</body>
-</html>
+
+    </div>
+    <div class="col-sm-6">
+        <ul>
+            {% for pessoa in pessoas %}
+                <li>{{pessoa.nome }}</li>
+            {% endfor%}
+        </ul>
+    </div>
+</div>
+{% endblock %}
