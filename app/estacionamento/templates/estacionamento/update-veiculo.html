@@ -1,0 +1,7 @@
+<h2>Dados do Usuario: {{veiculo}}</h2>
+
+<form action="{% url 'update-veiculo' veiculo.id %}" method="post">
+    {% csrf_token %}
+    {{form.as_p}}
+    <button type="submit">Salvar</button>
+</form>
