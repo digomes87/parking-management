@@ -22,6 +22,21 @@ def pessoa_novo(request):
     return redirect('lista_pessoa')
 
 
+def pessoa_update(request, id):
+    data = {}
+    pessoa = Pessoa.objects.get(id=id)
+    form = PessoaForm(request.POST or None, instance=pessoa)
+    data['pessoa'] = pessoa
+    data['form'] = form
+    
+    if request.method == 'POST':
+        if form.is_valid():
+            form.save()
+            return redirect('lista_pessoa')
+    else:
+        return render(request, 'estacionamento/update_pessoa.html', data)
+
+
 def lista_veiculo(request):
     veiculo = Veiculo.objects.all()
     return render(request, 'estacionamento/lista_veiculo.html', {'veiculo': veiculo})
