@@ -6,8 +6,16 @@
 </head>
 <body>
     listando pessoas
-    {% for pessoa in pessoas %}
-        {{pessoa.nome }}
-    {% endfor%}
+    <ul>
+        {% for pessoa in pessoas %}
+            <li>{{pessoa.nome }}</li>
+        {% endfor%}
+    </ul>
+
+    <form action="{% url 'pessoa_novo' %}" method="POST">
+        {% csrf_token%}
+        {{ form.as_p }}
+        <button type="submit">Salvar</button>
+    </form>
 </body>
 </html>
