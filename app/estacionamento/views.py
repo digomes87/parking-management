@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import Pessoa, Veiculo, MovRotativo
-from .form import PessoaForm
+from .form import PessoaForm, VeiculoForm
 
 
 def home(request):
@@ -41,6 +41,20 @@ def lista_veiculo(request):
     veiculo = Veiculo.objects.all()
     return render(request, 'estacionamento/lista_veiculo.html', {'veiculo': veiculo})
 
+
+def veiculo_update(request, id):
+    data = {}
+    veiculo = Veiculo.objects.get(id=id)
+    form = VeiculoForm(request.POST or None, instance=veiculo)
+    data['veiculo'] = veiculo
+    data['form'] = form
+
+    if request.method == 'POST':
+        if form.is_valid():
+            form.save()
+            return redirect('lista_veiculo')
+    else:
+        return render(request, 'estacionamento/update-veiculo.html', data)
 
 def lista_movimento(request):
     lista_movimento = MovRotativo.objects.all()
