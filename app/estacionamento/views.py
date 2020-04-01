@@ -37,6 +37,15 @@ def pessoa_update(request, id):
         return render(request, 'estacionamento/update_pessoa.html', data)
 
 
+def pessoa_delete(request, id):
+    pessoa = Pessoa.objects.get(id=id)
+    if request.method == 'POST':
+        pessoa.delete()
+        return redirect('lista_pessoa')
+    else:
+        return render(request, 'estacionamento/delete_confirm.html', {'pessoa': pessoa})
+
+
 def lista_veiculo(request):
     veiculo = Veiculo.objects.all()
     return render(request, 'estacionamento/lista_veiculo.html', {'veiculo': veiculo})
